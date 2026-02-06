@@ -374,3 +374,4 @@ else if (nameInput.value.trim().length < 2) {
     }
 });
 
+
