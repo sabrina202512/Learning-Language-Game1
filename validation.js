@@ -7,6 +7,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Password validation - at least 8 chars, uppercase, lowercase, and number
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+const nameRegex = /^[A-Za-z\s]+$/;
 
 // Show error message
 function showError(elementId, message) {
@@ -109,13 +110,18 @@ document.addEventListener('DOMContentLoaded', function() {
             let isValid = true;
 
             // Validate name
-            if (!nameInput.value.trim()) {
-                showError('name-error', 'Name is required');
-                isValid = false;
-            } else if (nameInput.value.trim().length < 2) {
-                showError('name-error', 'Name must be at least 2 characters');
-                isValid = false;
-            }
+        if (!nameInput.value.trim()) {
+    showError('name-error', 'Name is required');
+    isValid = false;
+} 
+else if (!nameRegex.test(nameInput.value.trim())) {
+    showError('name-error', 'Name must contain only letters');
+    isValid = false;
+}
+else if (nameInput.value.trim().length < 2) {
+    showError('name-error', 'Name must be at least 2 characters');
+    isValid = false;
+}
 
             // Validate email
             if (!emailInput.value.trim()) {
@@ -367,3 +373,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
